@@ -8,7 +8,7 @@ const bodyParser = require('body-parser')
 
 const app = express()
 const host = process.env.RUNNABLE_CONTAINER_URL || 'localhost'
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 80
 const mongoHost = process.env.MONGODB_HOST || 'localhost'
 
 mongoose.connect(`mongodb://${mongoHost}/todo`)
