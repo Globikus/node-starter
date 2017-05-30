@@ -355,7 +355,7 @@ function handleAnswer(ws, message) {
   peerconnection.setRemoteDescription(desc)
   .then( function() {
     console.log('setRemoteDescription for Answer OK id=' + id);
-    console.log('-- peers in the room = ' + soupRoom.peers.length);
+   // console.log('-- peers in the room = ' + soupRoom.peers.length);
 
     dumpPeer(peerconnection.peer, 'peer.dump after setRemoteDescription(re-answer):');
   })
