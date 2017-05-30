@@ -397,8 +397,7 @@ function cleanUpPeer(ws,name) {
   peerconnection.close();
 	//droom.get.delete(name);
   deletePeerConnection(id);
-
-  console.log('-- peers in the room = ' + droom.get(name).peers.length);
+// console.log('-- peers in the room = ' + droom.get(name).peers.length);
 }
 
 function getRoomName() {
