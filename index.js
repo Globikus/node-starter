@@ -213,9 +213,7 @@ const downOnlyRequested=false;
 		console.log('must not got offer.');
      // handleOffer(ws, inMessage);
     }
-    else if (inMessage.type === 'answer') {
-      
-  console.log('Application running at: ' + hostName)swer from id=' + id);
+    else if (inMessage.type === 'answer'){
       handleAnswer(ws, inMessage);
     }
     else if (inMessage.type === 'candidate') {
