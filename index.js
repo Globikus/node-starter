@@ -188,7 +188,7 @@ console.log('owner is true');
 croom(inMessage.roomname).then((da)=>{
 console.log('da: ',da);
 	ws.owner=inMessage.roomname;
-	let message={type:"rooming", sendto:id,success:"trying to success"};
+	var message={type:"rooming", sendto:id,success:"trying to success"};
 	//senback(ws,message);
 }).catch(e=>{
 	console.log('error room creating: ',e);
@@ -198,7 +198,7 @@ console.log('da: ',da);
 		}
 }else if (inMessage.type === 'call') {
       console.log('got call from id=' + id);
-      let message = { sendto: id, type: 'response' };
+      var message = { sendto: id, type: 'response' };
       console.log('send response to id=' + id);
 const downOnlyRequested=false;
 	preparePeer(ws, inMessage, downOnlyRequested);	
@@ -247,7 +247,7 @@ const downOnlyRequested=false;
 });
 
 function sendback(ws, message) {
-  let str = JSON.stringify(message);
+  var str = JSON.stringify(message);
   ws.send(str);
 }
 
@@ -257,8 +257,8 @@ const planb=message.planb;
 const capabilitySDP=message.capability;
 	//let peer=soupRoom.Peer(id);
 	console.log('MESSAGE.ROOMNAME: ',message.roomname);
-	let peer=droom.get(message.roomname).Peer(id);
-	let peerconnection=new RTCPeerConnection({peer:peer,usePlanB:planb});
+	var peer=droom.get(message.roomname).Peer(id);
+	var peerconnection=new RTCPeerConnection({peer:peer,usePlanB:planb});
 	console.log('--- create rtcpeerconnection --');
 	console.log('-- peers in the room = ',droom.get(message.roomname).peers.length);
 	peerconnection.on('close', err=>{console.log('peerconnection closed ');
@@ -301,13 +301,13 @@ function handleOffer(ws, message) {
   const id = getId(ws);
   const option = { usePlanB: message.planb };
       
-  let desc = new RTCSessionDescription({
+  var desc = new RTCSessionDescription({
     type : "offer",
     sdp  : message.sdp
   });
   console.log('RTCSessionDescription --');
 	var mediapeer=soupRoom.Peer("Alice");
-  let peerconnection = new RTCPeerConnection({peer:mediapeer, id:id, usePlanB:message.usePlanB});
+  var peerconnection = new RTCPeerConnection({peer:mediapeer, id:id, usePlanB:message.usePlanB});
 	peerconnection.setCapabilities(message.sdp).then(()=>{
 	sendsdpoffer(peerconnection);
 	}).catch(error=>{console.log('err: ',error);peerconnection.close()})
@@ -342,13 +342,13 @@ function handleOffer(ws, message) {
 
 function handleAnswer(ws, message) {
   const id = getId(ws);
-  let peerconnection = getPeerConnection(id);
+  var peerconnection = getPeerConnection(id);
   if (! peerconnection) {
     console.log('WARN: connection not found. id=', id);
     return;
   }
 
-  let desc = new RTCSessionDescription({
+  var desc = new RTCSessionDescription({
     type : "answer",
     sdp  : message.sdp
   });
@@ -388,7 +388,7 @@ function deletePeerConnection(id) {
 
 function cleanUpPeer(ws,name) {
   const id = getId(ws);
-  let peerconnection = getPeerConnection(id);
+  var peerconnection = getPeerConnection(id);
   if (! peerconnection) {
     console.log('WARN: cleanUpPeer(id) , connection not found. id=', id);
     return;
@@ -412,7 +412,7 @@ function getRoomName() {
 
 function sendSDP(ws, sessionDescription) {
   const id = getId(ws);
-  let message = { sendto: id, type: sessionDescription.type, sdp: sessionDescription.sdp };
+  var message = { sendto: id, type: sessionDescription.type, sdp: sessionDescription.sdp };
   console.log('--- sending sdp ---');
   //console.log(message);
   console.log('sendto:' + message.sendto + '   type:' + message.type);
