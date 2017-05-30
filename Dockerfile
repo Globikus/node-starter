@@ -1,3 +1,4 @@
+FROM node:7.10.0
 FROM runnable/node-starter
 MAINTAINER Runnable, Inc.
 
