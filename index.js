@@ -52,8 +52,8 @@ var server = mediasoup.Server({
 							 rtcAnnouncedIPv4:null,
 							 rtcAnnouncedIPv6:null,
 							 rtcMinPort:40000,rtcMaxPort:49999,
-							 dtlsCertificateFile:"keys/mycert.pem",
-							 dtlsPrivateKeyFile:"keys/mykey.pem"
+							 dtlsCertificateFile:"data/mycert.pem",
+							 dtlsPrivateKeyFile:"data/mykey.pem"
 							  });
 server.on('newroom',(r)=>{
 console.log('new room: ',r.id);
