@@ -32,8 +32,8 @@ const wsServer=new WebSocket.Server({server:bserver});
 const mediasoup = require('mediasoup');
 const RTCPeerConnection = mediasoup.webrtc.RTCPeerConnection;
 const RTCSessionDescription = mediasoup.webrtc.RTCSessionDescription;
-const roomOptions = require('./data/options.js').roomOptions;
-const peerCapabilities = require('./data/options.js').peerCapabilities;
+const roomOptions = require('./data/opions.js').roomOptions;
+const peerCapabilities = require('./data/opions.js').peerCapabilities;
 //const usePlanBFlag = true;
 
 var selfId = null;
