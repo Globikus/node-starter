@@ -43,7 +43,7 @@ var droom=new Map();
 var boom=new EventEmitter();
 //var ssl_options={key:fss.readFileSync('server.key'),cert:fss.readFileSync('server.crt')};
 
-let server = mediasoup.Server({
+var server = mediasoup.Server({
 	                         logLevel:"debug",
 	                         logTags:["info","ice","dtls","rtp","srtp"],
 							 rtcIPv4:true,
