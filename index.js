@@ -1,10 +1,10 @@
 console.log('hello from globikus!!!!!')
-/*
+
 'use strict';
 const EventEmitter=require('events');
 var fs=require('fs');
 const WebSocket = require('ws');
-//const http=require('http');
+const http=require('http');
 const https=require('https');
 const express = require('express');
 const app = express();
@@ -35,11 +35,11 @@ const roomOptions = require('./data/options').roomOptions;
 const peerCapabilities = require('./data/options').peerCapabilities;
 //const usePlanBFlag = true;
 
-let selfId = null;
-let soupRoom = null;
-let Connections = new Array();
-let clientIndex = 0;
-let droom=new Map();
+var selfId = null;
+var soupRoom = null;
+var Connections = new Array();
+var clientIndex = 0;
+var droom=new Map();
 var boom=new EventEmitter();
 //var ssl_options={key:fss.readFileSync('server.key'),cert:fss.readFileSync('server.crt')};
 
@@ -110,11 +110,24 @@ function getId(ws) {
 function getClientCount() {
   return wsServer.clients.size;
 }
-
+function heartbeat(){
+this.isAlive=true;
+//console.log('pong')
+}
+const interval=setInterval(function ping(){
+wsServer.clients.forEach(function each(ws){
+if(ws.isAlive===false)return ws.terminate();
+ws.isAlive=false;
+ws.ping(JSON.stringify({type:"ping"}),false,true)
+})
+},3000);
 
 
 wsServer.on('connection', function connection(ws) {
   console.log('client connected. id=' + getId(ws) + '  , total clients=' + getClientCount());
+ws.isAlive=true;
+ws.on('pong', heartbeat);	
+
 	function onfuck(dob){
 	console.log('DOB: ',dob);
 console.log('CLIENT SEND');
@@ -415,7 +428,7 @@ function sendSDP(ws, sessionDescription) {
 
 
 
-*/
+/*
 
 const express = require('express')
 const mongoose = require('mongoose')
@@ -464,3 +477,4 @@ app.get('/api/todos/:id', todos.one)
 app.post('/api/todos', todos.create)
 app.put('/api/todos/:id', todos.update)
 app.delete('/api/todos/:id', todos.delete)
+*/
