@@ -213,7 +213,7 @@ const downOnlyRequested=false;
      // handleOffer(ws, inMessage);
     }
     else if (inMessage.type === 'answer') {
-      console.log('got An var hostName = 'http://' + host + ':' + port
+      
   console.log('Application running at: ' + hostName)swer from id=' + id);
       handleAnswer(ws, inMessage);
     }
